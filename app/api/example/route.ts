@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import MongoClient from "@/db/MongoClient";
 
-export async function GET(req: NextResponse) {
+export async function GET(req: NextRequest) {
   const session = await auth();
   console.log(session?.user.email);
 
