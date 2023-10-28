@@ -13,7 +13,7 @@ export default async function middleware(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (!protectedRoutes.includes(pathname)) {
+  if (protectedRoutes.includes(pathname)) {
     return withAuth(req as NextRequestWithAuth);
   }
 
