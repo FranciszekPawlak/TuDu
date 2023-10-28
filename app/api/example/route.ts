@@ -6,7 +6,10 @@ export async function GET(req: NextRequest) {
   const session = await auth();
   console.log(session?.user.email);
 
-  const example = await MongoClient.collection("example").find({}).toArray();
+  const example = await MongoClient.db("tudu_master")
+    .collection("example")
+    .find({})
+    .toArray();
 
   return NextResponse.json(example);
 }
