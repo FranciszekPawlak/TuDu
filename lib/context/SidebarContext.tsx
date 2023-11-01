@@ -7,13 +7,12 @@ import isSmallScreen from "../helpers/isSmallScreen";
 interface SidebarContextProps {
   isOpenOnSmallScreens: boolean;
   isPageWithSidebar: boolean;
-  // eslint-disable-next-line no-unused-vars
   setOpenOnSmallScreens: (isOpen: boolean) => void;
 }
 
 const SidebarContext = createContext<SidebarContextProps>({
   isOpenOnSmallScreens: false,
-  isPageWithSidebar: false,
+  isPageWithSidebar: true,
   setOpenOnSmallScreens: () => {}
 });
 

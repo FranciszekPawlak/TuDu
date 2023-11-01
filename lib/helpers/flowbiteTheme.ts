@@ -33,12 +33,32 @@ const flowbiteTheme: CustomFlowbiteTheme = {
     },
   },
   dropdown: {
+    arrowIcon: "ml-2 h-4 w-4",
+    content: "py-1 focus:outline-none",
     floating: {
-      base: "z-10 w-fit rounded-xl divide-y divide-gray-100 shadow",
-      content: "rounded-xl text-sm text-gray-700 dark:text-gray-200",
-      target: "w-fit dark:text-white",
+      animation: "transition-opacity",
+      arrow: {
+        base: "absolute z-10 h-2 w-2 rotate-45",
+        style: {
+          auto: "bg-gray-700"
+        },
+        placement: "-4px"
+      },
+      base: "z-10 w-fit rounded divide-y divide-gray-100 shadow focus:outline-none",
+      content: "py-1 text-sm text-gray-200",
+      divider: "my-1 h-px bg-gray-600",
+      header: "block py-2 px-4 text-sm text-gray-200",
+      hidden: "invisible opacity-0",
+      item: {
+        base: "flex items-center justify-start py-2 px-4 text-sm cursor-pointer w-full text-gray-200 hover:bg-gray-600 focus:outline-none hover:text-white focus:bg-gray-600 focus:text-white",
+        icon: "mr-2 h-4 w-4"
+      },
+      style: {
+        auto: "border border-none bg-gray-700 text-white"
+      },
+      target: "w-fit"
     },
-    content: "",
+    inlineWrapper: "flex items-center"
   },
   modal: {
     content: {
@@ -50,19 +70,27 @@ const flowbiteTheme: CustomFlowbiteTheme = {
   },
   navbar: {
     root: {
-      base: "fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700",
+      base: "fixed z-30 w-full border-b border-gray-700 bg-gray-800",
     },
   },
   sidebar: {
     root: {
-      base: "flex fixed top-0 left-0 z-20 flex-col flex-shrink-0 pt-16 h-full duration-75 border-r border-gray-200 lg:flex transition-width dark:border-gray-700",
+      base: "flex fixed top-0 left-0 z-20 flex-col flex-shrink-0 pt-16 h-full duration-75 border-r lg:flex transition-width border-gray-700",
+      inner: "h-full overflow-y-auto overflow-x-hidden rounded py-4 px-3 bg-gray-800"
     },
     item: {
-      base: "flex items-center justify-center rounded-lg p-2 text-base font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
+      base: "flex items-center justify-center rounded-lg p-2 text-base font-medium text-white hover:bg-gray-700",
     },
     collapse: {
+      icon: {
+        base: "h-6 w-6 transition duration-75 text-gray-400 group-hover:text-white",
+        open: {
+          off: "",
+          on: "text-gray-100"
+        }
+      },
       button:
-        "group flex w-full items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
+        "group flex w-full items-center rounded-lg p-2 text-base font-medium transition duration-75 text-white hover:bg-gray-700",
     },
   },
   textarea: {
@@ -72,10 +100,10 @@ const flowbiteTheme: CustomFlowbiteTheme = {
     field: {
       input: {
         colors: {
-          info: "border-blue-500 bg-blue-50 text-blue-900 placeholder-blue-700 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-400 dark:bg-blue-100 dark:focus:border-blue-500 dark:focus:ring-blue-500",
+          info: "text-blue-900 placeholder-blue-700 focus:border-blue-500 focus:ring-blue-500 border-blue-400 bg-gray-700",
         },
         withIcon: {
-          on: "!pl-12",
+          on: "pl-12",
         },
       },
     },

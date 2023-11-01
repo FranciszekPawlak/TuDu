@@ -1,16 +1,11 @@
 'use client'
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, useSidebarContext } from "@/lib/context/SidebarContext";
-import { Flowbite, useThemeMode } from "flowbite-react";
-import Navbar from '../ui/navbar/Navbar'
-import Sidebar from '../ui/sidebar/Sidebar'
+import { Flowbite } from "flowbite-react";
+import  Navbar from './components/layout/navbar/Navbar'
+import Sidebar from './components/layout/sidebar/Sidebar'
 import classNames from "classnames";
 import theme from '../lib/helpers/flowbiteTheme'
-import { FC, useEffect } from "react";
-
-const inter = Inter({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -23,26 +18,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const {isOpenOnSmallScreens} = useSidebarContext()
-  const dark = localStorage.getItem("theme") === "dark";
 
   return (
     <html lang="en">
-      {/* <body className={inter.className}> */}
-      <body className="bg-gray-50 dark:bg-gray-900 antialiased">
-        <Flowbite theme={{ dark, theme }}>
-          <PersistFlowbiteThemeToLocalStorage />
+      <body className="bg-gray-900 antialiased min-h-screen">
+        <Flowbite theme={{ theme }}>
           <SidebarProvider>
             <Navbar />
             <div className="flex items-start pt-16">
               <Sidebar />
               <main
-              className={classNames(
-                "overflow-y-auto relative w-full h-full bg-gray-50 dark:bg-gray-900",
-                isOpenOnSmallScreens ? "lg:ml-16" : "lg:ml-64"
-              )}
-            >
-              {children}
-            </main>
+                className={classNames(
+                  "overflow-y-auto relative w-full h-full bg-gray-900",
+                  isOpenOnSmallScreens ? "lg:ml-16" : "lg:ml-64"
+                )}
+              >
+                {children}
+              </main>
             </div>
           </SidebarProvider>
         </Flowbite>
@@ -50,13 +42,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-const PersistFlowbiteThemeToLocalStorage: FC = () => {
-  const [themeMode] = useThemeMode();
-
-  useEffect(() => {
-    localStorage.setItem("theme", themeMode);
-  }, [themeMode]);
-
-  return <></>;
-};

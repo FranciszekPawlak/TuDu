@@ -5,7 +5,7 @@ module.exports = {
     "./pages/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./public/**/*.html",
-    "./ui/**/*.{tsx}"
+    "./ui/**/*.{ts,tsx}"
   ],
   plugins: [require("flowbite/plugin")],
   theme: {
