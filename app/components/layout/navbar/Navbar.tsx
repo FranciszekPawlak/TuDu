@@ -1,22 +1,21 @@
-'use client'
 import type { FC } from "react";
-import { DarkThemeToggle, Label, Navbar, TextInput } from "flowbite-react";
+import { Label, Navbar as FlowbiteNavbar, TextInput } from "flowbite-react";
 import {
   HiMenuAlt1,
-  HiSearch,
-  HiX,
+  HiSearch, HiX,
 } from "react-icons/hi";
-import { useSidebarContext } from "@/lib/context/SidebarContext";
-import isSmallScreen from "@/lib/helpers/isSmallScreen";
 import UserMenu from "./UserMenu";
 import Notifications from "./Notifications";
+import { useSidebarContext } from "@/lib/context/SidebarContext";
+import isSmallScreen from "@/lib/helpers/isSmallScreen";
+import Image from "next/image";
 
-const ExampleNavbar: FC = function () {
+const Navbar: FC = () => {
   const { isOpenOnSmallScreens, isPageWithSidebar, setOpenOnSmallScreens } =
     useSidebarContext();
 
   return (
-    <Navbar fluid>
+    <FlowbiteNavbar fluid>
       <div className="w-full p-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
@@ -33,16 +32,18 @@ const ExampleNavbar: FC = function () {
                 )}
               </button>
             )}
-            <Navbar.Brand href="/">
-              <img
+            <FlowbiteNavbar.Brand href="/">
+              <Image
                 alt=""
                 src="https://flowbite.com/docs/images/logo.svg"
                 className="mr-3 h-6 sm:h-8"
+                width={32}
+                height={33}
               />
               <span className="self-center whitespace-nowrap text-2xl font-semibold text-white">
                 TuDuTuDuTuDu
               </span>
-            </Navbar.Brand>
+            </FlowbiteNavbar.Brand>
             <form className="ml-16 hidden md:block">
               <Label htmlFor="search" className="sr-only">
                 Szukaj
@@ -68,7 +69,6 @@ const ExampleNavbar: FC = function () {
                 <HiSearch className="h-6 w-6" />
               </button>
               <Notifications />
-              <DarkThemeToggle />
             </div>
             <div className="hidden lg:block">
               <UserMenu />
@@ -76,8 +76,8 @@ const ExampleNavbar: FC = function () {
           </div>
         </div>
       </div>
-    </Navbar>
+    </FlowbiteNavbar>
   );
 };
 
-export default ExampleNavbar;
+export default Navbar;

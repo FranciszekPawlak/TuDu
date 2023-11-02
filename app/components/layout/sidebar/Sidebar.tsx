@@ -1,4 +1,3 @@
-'use client'
 import classNames from "classnames";
 import { Sidebar as FlowbiteSidebar, TextInput, Tooltip } from "flowbite-react";
 import type { FC } from "react";
@@ -13,10 +12,10 @@ import {
   HiSearch,
 } from "react-icons/hi";
 import { useSidebarContext } from "@/lib/context/SidebarContext";
+import isSmallScreen from "@/lib/helpers/isSmallScreen";
 
 const Sidebar: FC = function () {
-  const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } =
-    useSidebarContext();
+const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } = useSidebarContext();
 
   return (
     <div
@@ -26,7 +25,7 @@ const Sidebar: FC = function () {
     >
       <FlowbiteSidebar
         aria-label="Sidebar with multi-level dropdown example"
-        collapsed={false}
+        collapsed={isSidebarOpenOnSmallScreens && !isSmallScreen()}
       >
         <div className="flex h-full flex-col justify-between py-2">
           <div>
@@ -112,10 +111,10 @@ const BottomMenu: FC = function () {
         <Tooltip content="Ustawienia">
           <a
             href="/users/settings"
-            className="inline-flex cursor-pointer justify-center rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="inline-flex cursor-pointer justify-center rounded p-2 text-gray-500 hover:bg-gray-700 hover:text-white"
           >
             <span className="sr-only">Ustawienia</span>
-            <HiCog className="text-2xl text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" />
+            <HiCog className="text-2xl text-gray-400 hover:text-white" />
           </a>
         </Tooltip>
       </div>

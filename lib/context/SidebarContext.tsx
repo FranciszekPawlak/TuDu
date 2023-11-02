@@ -1,8 +1,7 @@
-'use client'
+"use client";
+
 import type { PropsWithChildren } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import isBrowser from "../helpers/isBrowser";
-import isSmallScreen from "../helpers/isSmallScreen";
 
 interface SidebarContextProps {
   isOpenOnSmallScreens: boolean;
@@ -10,24 +9,13 @@ interface SidebarContextProps {
   setOpenOnSmallScreens: (isOpen: boolean) => void;
 }
 
-const SidebarContext = createContext<SidebarContextProps>({
-  isOpenOnSmallScreens: false,
-  isPageWithSidebar: true,
-  setOpenOnSmallScreens: () => {}
-});
+const SidebarContext = createContext<SidebarContextProps>(undefined!);
 
-export function SidebarProvider({ children }: PropsWithChildren) {
+export function SidebarProvider({
+  children,
+}: PropsWithChildren<Record<string, unknown>>) {
   const location = isBrowser() ? window.location.pathname : "/";
-  const [isOpen, setOpen] = useState(
-    isBrowser()
-      ? window.localStorage.getItem("isSidebarOpen") === "true"
-      : false
-  );
-
-  // Save latest state to localStorage
-  useEffect(() => {
-    window.localStorage.setItem("isSidebarOpen", isOpen.toString());
-  }, [isOpen]);
+  const [isOpen, setOpen] = useState(false);
 
   // Close Sidebar on page change on mobile
   useEffect(() => {
@@ -66,10 +54,18 @@ export function SidebarProvider({ children }: PropsWithChildren) {
   );
 }
 
-export function useSidebarContext(): SidebarContextProps {
-  const context = useContext(SidebarContext);
+function isBrowser(): boolean {
+  return typeof window !== "undefined";
+}
 
-  if (typeof context === "undefined") {
+function isSmallScreen(): boolean {
+  return isBrowser() && window.innerWidth < 768;
+}
+
+export function useSidebarContext(): SidebarContextProps {
+  const context = useContext(SidebarContext) as SidebarContextProps | undefined;
+
+  if (!context) {
     throw new Error(
       "useSidebarContext should be used within the SidebarContext provider!"
     );
