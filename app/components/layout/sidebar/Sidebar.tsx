@@ -19,9 +19,7 @@ const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } = useSidebarContext(
 
   return (
     <div
-      className={classNames("lg:!block", {
-        hidden: !isSidebarOpenOnSmallScreens,
-      })}
+      className={classNames("lg:!block", {hidden: !isSidebarOpenOnSmallScreens})}
     >
       <FlowbiteSidebar
         aria-label="Sidebar with multi-level dropdown example"
