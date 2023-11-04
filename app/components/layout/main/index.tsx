@@ -9,6 +9,7 @@ import React from "react";
 export default function Layout({ children }: React.PropsWithChildren) {
   React.useEffect(() => {
     if ("serviceWorker" in navigator) {
+      console.log("xD");
       navigator.serviceWorker
         .register("/service-worker.js", { scope: "/" })
         .then((registration) => console.log("scope is: ", registration.scope));
