@@ -25,11 +25,13 @@ const cacheClone = async (e) => {
 
 const fetchEvent = () => {
   self.addEventListener("fetch", (e) => {
-    e.respondWith(
-      cacheClone(e)
-        .catch(() => caches.match(e.request))
-        .then((res) => res)
-    );
+    if (e.request.headers.get("Accept").includes("image")) {
+      e.respondWith(
+        cacheClone(e)
+          .catch(() => caches.match(e.request))
+          .then((res) => res)
+      );
+    }
   });
 };
 
