@@ -35,4 +35,4 @@ const fetchEvent = () => {
   });
 };
 
-fetchEvent();
+// fetchEvent();
