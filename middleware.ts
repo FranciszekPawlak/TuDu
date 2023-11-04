@@ -3,7 +3,7 @@ import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
 import { NextResponse, NextRequest } from "next/server";
 
 const protectedRoutes = ["/"];
-const unprotectedApiRoutes = ["/api/auth/signin", "/api/auth/signout"];
+const unprotectedApiRoutes = ["/api/auth/signin"];
 
 export default async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
