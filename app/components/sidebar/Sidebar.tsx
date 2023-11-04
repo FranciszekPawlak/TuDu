@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { Sidebar as FlowbiteSidebar, TextInput, Tooltip } from "flowbite-react";
-import type { FC } from "react";
 import {
   HiChartPie,
   HiChartSquareBar,
@@ -14,12 +13,15 @@ import {
 import { useSidebarContext } from "@/lib/context/SidebarContext";
 import isSmallScreen from "@/lib/helpers/isSmallScreen";
 
-const Sidebar: FC = function () {
-const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } = useSidebarContext();
+const Sidebar = function () {
+  const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } =
+    useSidebarContext();
 
   return (
     <div
-      className={classNames("lg:!block", {hidden: !isSidebarOpenOnSmallScreens})}
+      className={classNames("lg:!block", {
+        hidden: !isSidebarOpenOnSmallScreens,
+      })}
     >
       <FlowbiteSidebar
         aria-label="Sidebar with multi-level dropdown example"
@@ -38,38 +40,30 @@ const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } = useSidebarContext(
             </form>
             <FlowbiteSidebar.Items>
               <FlowbiteSidebar.ItemGroup>
-                <FlowbiteSidebar.Item
-                  href="/"
-                  icon={HiChartPie}
-                >
+                <FlowbiteSidebar.Item href="/" icon={HiChartPie}>
                   Dashboard
                 </FlowbiteSidebar.Item>
-                
+
                 <FlowbiteSidebar.Collapse icon={HiChartSquareBar} label="Pages">
-                  <FlowbiteSidebar.Item href="/pages/pricing">Pricing</FlowbiteSidebar.Item>
+                  <FlowbiteSidebar.Item href="/pages/pricing">
+                    Pricing
+                  </FlowbiteSidebar.Item>
                   <FlowbiteSidebar.Item href="/pages/maintenance">
                     Maintenace
                   </FlowbiteSidebar.Item>
-                  <FlowbiteSidebar.Item href="/pages/404">404 not found</FlowbiteSidebar.Item>
+                  <FlowbiteSidebar.Item href="/pages/404">
+                    404 not found
+                  </FlowbiteSidebar.Item>
                   <FlowbiteSidebar.Item href="/pages/500">
                     500 server error
                   </FlowbiteSidebar.Item>
                 </FlowbiteSidebar.Collapse>
-                <FlowbiteSidebar.Collapse icon={HiLockClosed} label="Authentication">
+                <FlowbiteSidebar.Collapse
+                  icon={HiLockClosed}
+                  label="Authentication"
+                >
                   <FlowbiteSidebar.Item href="/authentication/sign-in">
-                    Sign in
-                  </FlowbiteSidebar.Item>
-                  <FlowbiteSidebar.Item href="/authentication/sign-up">
-                    Sign up
-                  </FlowbiteSidebar.Item>
-                  <FlowbiteSidebar.Item href="/authentication/forgot-password">
-                    Forgot password
-                  </FlowbiteSidebar.Item>
-                  <FlowbiteSidebar.Item href="/authentication/reset-password">
-                    Reset password
-                  </FlowbiteSidebar.Item>
-                  <FlowbiteSidebar.Item href="/authentication/profile-lock">
-                    Profile lock
+                    White list
                   </FlowbiteSidebar.Item>
                 </FlowbiteSidebar.Collapse>
               </FlowbiteSidebar.ItemGroup>
@@ -102,7 +96,7 @@ const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } = useSidebarContext(
   );
 };
 
-const BottomMenu: FC = function () {
+const BottomMenu = function () {
   return (
     <div className="flex items-center justify-center gap-x-5">
       <div>

@@ -2,7 +2,7 @@
 
 import { Flowbite } from "flowbite-react";
 import { FC, PropsWithChildren } from "react";
-import theme from "../../../../lib/helpers/flowbiteTheme";
+import theme from "../../../lib/helpers/flowbiteTheme";
 import { SidebarProvider } from "@/lib/context/SidebarContext";
 import SessionProvider from "./SessionProvider";
 

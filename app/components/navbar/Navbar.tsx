@@ -1,16 +1,12 @@
-import type { FC } from "react";
 import { Label, Navbar as FlowbiteNavbar, TextInput } from "flowbite-react";
-import {
-  HiMenuAlt1,
-  HiSearch, HiX,
-} from "react-icons/hi";
+import { HiMenuAlt1, HiSearch, HiX } from "react-icons/hi";
 import UserMenu from "./UserMenu";
 import Notifications from "./Notifications";
 import { useSidebarContext } from "@/lib/context/SidebarContext";
 import isSmallScreen from "@/lib/helpers/isSmallScreen";
-import Image from "next/image";
+import Logo from "../Logo";
 
-const Navbar: FC = () => {
+const Navbar = () => {
   const { isOpenOnSmallScreens, isPageWithSidebar, setOpenOnSmallScreens } =
     useSidebarContext();
 
@@ -33,16 +29,7 @@ const Navbar: FC = () => {
               </button>
             )}
             <FlowbiteNavbar.Brand href="/">
-              <Image
-                alt=""
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="mr-3 h-6 sm:h-8"
-                width={32}
-                height={33}
-              />
-              <span className="self-center whitespace-nowrap text-2xl font-semibold text-white">
-                TuDuTuDuTuDu
-              </span>
+              <Logo type="transparent_white" />
             </FlowbiteNavbar.Brand>
             <form className="ml-16 hidden md:block">
               <Label htmlFor="search" className="sr-only">

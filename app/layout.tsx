@@ -1,10 +1,10 @@
 "use client";
 
 import "./globals.css";
-import Navbar from "./components/server/navbar/Navbar";
-import Sidebar from "./components/server/sidebar/Sidebar";
-import Providers from "./components/client/providers/Providers";
-import Main from "./components/server/layout/main/Main";
+import Navbar from "./components/navbar/Navbar";
+import Sidebar from "./components/sidebar/Sidebar";
+import Providers from "./components/providers/Providers";
+import Main from "./components/layout/main/Main";
 import Head from "next/head";
 
 export default function RootLayout({
