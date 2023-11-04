@@ -4,7 +4,7 @@ import { signOut, useSession } from "next-auth/react";
 
 const UserMenu = () => {
   const { data: session } = useSession();
-  console.log(session?.user);
+
   return (
     <Dropdown
       arrowIcon={false}
