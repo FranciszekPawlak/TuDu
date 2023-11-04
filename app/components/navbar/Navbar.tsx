@@ -57,7 +57,7 @@ const Navbar = () => {
               </button>
               <Notifications />
             </div>
-            <div className="hidden lg:block">
+            <div className="block">
               <UserMenu />
             </div>
           </div>
