@@ -1,36 +1,38 @@
 import NextAuth, { AuthOptions, getServerSession } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
 import type {
   GetServerSidePropsContext,
   NextApiRequest,
   NextApiResponse,
 } from "next";
+import GoogleProvider from "next-auth/providers/google";
+
+const whiteListEmails = "box@franciszekpawlak.pl, da.plotek@gmail.com";
 
 export const authOptions: AuthOptions = {
   providers: [
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: {
-          label: "Email",
-          placeholder: "email",
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
         },
-        password: {
-          label: "Password",
-          placeholder: "password",
-        },
-      },
-      async authorize(credentials) {
-        if (credentials) {
-          return {
-            id: "1",
-            email: "user@email.com",
-          };
-        }
-        return null;
       },
     }),
   ],
+  callbacks: {
+    async signIn({ account, profile }) {
+      if (
+        account?.provider === "google" &&
+        whiteListEmails.includes(profile?.email!)
+      ) {
+        return true;
+      }
+      return false; // Do different verification for other providers that don't have `email_verified`
+    },
+  },
 };
 
 export function auth(
