@@ -1,11 +1,15 @@
-"use client";
+import type { Metadata } from "next";
 
 import "./globals.css";
-import Navbar from "./components/navbar/Navbar";
-import Sidebar from "./components/sidebar/Sidebar";
-import Providers from "./components/providers/Providers";
-import Main from "./components/layout/main/Main";
-import Head from "next/head";
+
+import React from "react";
+import Layout from "./components/layout/main";
+
+export const metadata: Metadata = {
+  title: "tudu",
+  description: "tudu app",
+  other: { "theme-color": "#ffffff" },
+};
 
 export default function RootLayout({
   children,
@@ -14,18 +18,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <Head>
-        <link rel="manifest" href="/manifest.json" />
-        {/* <meta name="theme-color" content="#ffffff" /> */}
-      </Head>{" "}
       <body className="bg-gray-900 antialiased min-h-screen">
-        <Providers>
-          <Navbar />
-          <div className="flex items-start pt-16">
-            <Sidebar />
-            <Main>{children}</Main>
-          </div>
-        </Providers>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
